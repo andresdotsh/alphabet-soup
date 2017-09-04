@@ -3,11 +3,29 @@
   <head>
     <meta charset="utf-8">
     <title>Alphabet Soup</title>
+
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <h2>Alphabet Soup</h2>
 
-    <div id="hello"></div>
+    <div class="main">
+      <div class="input-screen">
+        <h2>Alphabet Soup</h2>
+        <div>
+          <input type="text" id="in-word" class="in-word" placeholder="Insert a word and press enter" maxlength="20">
+        </div>
+        <div>
+          <ul id="my-list" class="words-list"></ul>
+        </div>
+        <div>
+          <button id="merge-words" class="merge-words" type="button">Merge words</button>
+        </div>
+      </div>
+
+      <div class="output-screen">
+        <table id="my-table"></table>
+      </div>
+    </div>
 
     <script src="scripts.js"></script>
   </body>
