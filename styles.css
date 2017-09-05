@@ -26,7 +26,7 @@ table td {
   list-style-type: none;
 }
 
-.in-word, .merge-words {
+.in-word, .merge-words, .show-hide {
   width: 70%;
 }
 

@@ -4,17 +4,25 @@
   const soup = doc.getElementById('my-table');
   const wordInput = doc.getElementById('in-word');
   const mergeButton = doc.getElementById('merge-words');
+  const showHideButton = doc.getElementById('show-hide');
 
   function generateLetter() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
   }
 
-  function drawTable(table, size) {
+  function drawEmptyTable(table, size) {
     for (let x = 0; x < size; x += 1) {
       const row = table.insertRow(x);
       for (let y = 0; y < size; y += 1) {
-        const cell = row.insertCell(y);
-        cell.innerHTML = generateLetter();
+        row.insertCell(y);
+      }
+    }
+  }
+
+  function fillTable(table, size) {
+    for (let x = 0; x < size; x += 1) {
+      for (let y = 0; y < size; y += 1) {
+        table.rows[x].cells[y].innerHTML = generateLetter();
       }
     }
   }
@@ -114,7 +122,7 @@
       const x = posXY.split(',')[0];
       const y = posXY.split(',')[1];
       soup.rows[x].cells[y].innerHTML = word.charAt(ind);
-      soup.rows[x].cells[y].className = 'visible';
+      soup.rows[x].cells[y].className = 'in';
     });
   }
 
@@ -131,10 +139,24 @@
   mergeButton.addEventListener('click', () => {
     wordInput.disabled = true;
     mergeButton.disabled = true;
+    fillTable(soup, num);
     wordsArr.forEach(putWords);
   });
 
-  drawTable(soup, num);
+  showHideButton.addEventListener('click', () => {
+    let hideLetters = doc.getElementsByClassName('in');
+    if (hideLetters.length > 0) {
+      [].forEach.call(hideLetters, (td) => {
+        if (td.classList.contains('visible')) {
+          td.classList.remove('visible');
+        } else {
+          td.classList.add('visible');
+        }
+      });
+    }
+  });
+
+  drawEmptyTable(soup, num);
   wordInput.setAttribute('maxlength', num);
   wordInput.focus();
 })(document);
