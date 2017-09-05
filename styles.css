@@ -4,7 +4,7 @@ table {
 }
 
 table td {
-  font-size: 18px;
+  font-size: 16px;
   border: 1px solid gray;
   height: 25px;
   width: 25px;
@@ -28,4 +28,8 @@ table td {
 
 .in-word, .merge-words {
   width: 70%;
+}
+
+.visible {
+  background-color: yellow;
 }
