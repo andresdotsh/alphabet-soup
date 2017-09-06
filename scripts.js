@@ -114,7 +114,19 @@
         }
       }
 
-      if (count === wordLength) canIn = true;
+      if (count === wordLength) {
+        count = 0;
+        arrPos.forEach((posXY, ind) => {
+          const x = posXY.split(',')[0];
+          const y = posXY.split(',')[1];
+          if (soup.rows[x].cells[y].classList.contains('in')) {
+            if (soup.rows[x].cells[y].textContent === word.charAt(ind)) count += 1;
+          } else {
+            count += 1;
+          }
+        });
+        if (count === wordLength) canIn = true;
+      }
       if (canIn) keepWhile = false;
     }
 
@@ -144,7 +156,7 @@
   });
 
   showHideButton.addEventListener('click', () => {
-    let hideLetters = doc.getElementsByClassName('in');
+    const hideLetters = doc.getElementsByClassName('in');
     if (hideLetters.length > 0) {
       [].forEach.call(hideLetters, (td) => {
         if (td.classList.contains('visible')) {
